@@ -38,12 +38,6 @@ const Hero = () => {
       <div className="hero-background">
         <div className="hero-overlay"></div>
         <div className="tech-pattern"></div>
-        <div className="floating-elements">
-          <div className="floating-icon entrance-1">⚡</div>
-          <div className="floating-icon entrance-2">🔧</div>
-          <div className="floating-icon entrance-3">💻</div>
-          <div className="floating-icon entrance-4">🚀</div>
-        </div>
       </div>
       
       <div className="hero-content">
@@ -70,20 +64,24 @@ const Hero = () => {
         </div>
         
         <div className={`hero-visual ${isLoaded ? 'loaded' : ''}`}>
-          <div className="hero-card card-1">
-            <div className="card-icon">🎯</div>
-            <h3>Community Focus</h3>
-            <p>Building strong connections</p>
+          <div className="cards-row">
+            <div className="hero-card card-1">
+              <div className="card-icon">🎯</div>
+              <h3>Community Focus</h3>
+              <p>Building strong connections</p>
+            </div>
+            <div className="hero-card card-2">
+              <div className="card-icon">🌟</div>
+              <h3>Innovation Hub</h3>
+              <p>Creative solutions & ideas</p>
+            </div>
           </div>
-          <div className="hero-card card-2">
-            <div className="card-icon">🌟</div>
-            <h3>Innovation Hub</h3>
-            <p>Creative solutions & ideas</p>
-          </div>
-          <div className="hero-card card-3">
-            <div className="card-icon">🤝</div>
-            <h3>Collaboration</h3>
-            <p>Working together</p>
+          <div className="cards-row center">
+            <div className="hero-card card-3">
+              <div className="card-icon">🤝</div>
+              <h3>Collaboration</h3>
+              <p>Working together</p>
+            </div>
           </div>
         </div>
       </div>

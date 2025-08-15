@@ -71,7 +71,7 @@ const Features = () => {
     <section id="features" className="features" ref={featuresRef}>
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Why Choose Velocity Club?</h2>
+          <h2 className="section-title">Why Join Velocity Club?</h2>
           <p className="section-subtitle">
             Discover the unique benefits that make our community the perfect place for growth and collaboration
           </p>
