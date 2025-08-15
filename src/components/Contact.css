@@ -1,0 +1,135 @@
+.contact {
+  padding: 6rem 0;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+  background-size: 200px 200px, 300px 300px;
+  animation: float 25s ease-in-out infinite;
+  z-index: 0;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.info-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md), var(--glow);
+  border-color: var(--primary-color);
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-item h3 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.info-item p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact {
+    padding: 4rem 0;
+  }
+
+  .contact-content {
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .info-item {
+    padding: 1.25rem;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 3rem 0;
+  }
+
+  .contact-content {
+    gap: 1.5rem;
+  }
+
+  .info-item {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .info-item h3 {
+    font-size: 0.9rem;
+  }
+
+  .info-item p {
+    font-size: 0.85rem;
+  }
+}
