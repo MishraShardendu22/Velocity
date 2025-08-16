@@ -30,7 +30,11 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -57,7 +61,7 @@
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -106,6 +110,7 @@
   top: 80px;
   left: 0;
   right: 0;
+  z-index: 999;
   background: rgba(10, 10, 10, 0.98);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 212, 255, 0.2);
@@ -123,7 +128,8 @@
   visibility: visible;
 }
 
-.mobile-menu .nav-links {
+.mobile-menu .mobile-nav-links {
+  display: flex;
   flex-direction: column;
   gap: 1.5rem;
   align-items: flex-start;

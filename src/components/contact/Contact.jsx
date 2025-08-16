@@ -1,4 +1,4 @@
-import './Contact.css'
+import "./Contact.css";
 
 const Contact = () => {
   return (
@@ -10,7 +10,7 @@ const Contact = () => {
             Ready to join Velocity Club? Let's start the conversation.
           </p>
         </div>
-        
+
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
@@ -20,7 +20,7 @@ const Contact = () => {
                 <p>Global Community</p>
               </div>
             </div>
-            
+
             <div className="info-item">
               <div className="info-icon">📧</div>
               <div>
@@ -28,7 +28,7 @@ const Contact = () => {
                 <p>hello@velocityclub.com</p>
               </div>
             </div>
-            
+
             <div className="info-item">
               <div className="info-icon">🌐</div>
               <div>
@@ -36,7 +36,7 @@ const Contact = () => {
                 <p>www.velocityclub.com</p>
               </div>
             </div>
-            
+
             <div className="info-item">
               <div className="info-icon">⏰</div>
               <div>
@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
