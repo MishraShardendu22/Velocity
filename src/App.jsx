@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Features from './components/Features'
-import Team from './components/Team'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { useState, useEffect } from "react";
+import "./App.css";
+import Navbar from "./components/navbar/Navbar";
+import Hero from "./components/hero/Hero";
+import About from "./components/about/About";
+import Features from "./components/features/Features";
+import Team from "./components/team/Team";
+import Projects from "./components/projects/Projects";
+import Contact from "./components/contact/Contact";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Simulate loading time for smooth entrance
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (isLoading) {
     return (
@@ -26,7 +26,7 @@ function App() {
         <div className="loading-spinner"></div>
         <h2>Velocity Club</h2>
       </div>
-    )
+    );
   }
 
   return (
@@ -40,7 +40,7 @@ function App() {
       <Contact />
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
