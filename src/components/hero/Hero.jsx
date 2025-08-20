@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Hero.css'
+import Logo3D from '../3D-Logo/logo'
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -62,8 +63,10 @@ const Hero = () => {
             <button className="hero-btn secondary">Our Projects</button>
           </div>
         </div>
-        
-        <div className={`hero-visual ${isLoaded ? 'loaded' : ''}`}>
+        <div>
+          <Logo3D/>
+        </div>
+        {/* <div className={`hero-visual ${isLoaded ? 'loaded' : ''}`}>
           <div className="cards-row">
             <div className="hero-card card-1">
               <div className="card-icon">🎯</div>
@@ -83,7 +86,7 @@ const Hero = () => {
               <p>Working together</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )
