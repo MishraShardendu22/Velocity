@@ -1,103 +1,40 @@
 import { useEffect, useRef, useState } from "react";
 import "./Projects.css";
 
+import { projects } from "../../data/projectData";
+import ProjectCard from "./ProjectCard";
+import { motion, AnimatePresence } from "framer-motion";
+
 const Projects = () => {
   const projectsRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current);
-    }
-    return () => {
-      if (projectsRef.current) {
-        observer.unobserve(projectsRef.current);
-      }
-    };
-  }, []);
-
-  const projects = [
-    {
-      title: "Community Platform",
-      category: "Web Development",
-      description:
-        "A comprehensive platform for community management and collaboration",
-      image: "🌐",
-      tech: ["React", "Node.js", "MongoDB"],
-      status: "Completed",
-      link: "#",
-    },
-    {
-      title: "Mobile App",
-      category: "Mobile Development",
-      description:
-        "Cross-platform mobile application for seamless communication",
-      image: "📱",
-      tech: ["React Native", "Firebase", "TypeScript"],
-      status: "In Progress",
-      link: "#",
-    },
-    {
-      title: "AI Chatbot",
-      category: "Machine Learning",
-      description: "Intelligent chatbot for automated community support",
-      image: "🤖",
-      tech: ["Python", "TensorFlow", "NLP"],
-      status: "Completed",
-      link: "#",
-    },
-    {
-      title: "Data Analytics Dashboard",
-      category: "Data Science",
-      description: "Real-time analytics and insights for community growth",
-      image: "📊",
-      tech: ["Python", "D3.js", "PostgreSQL"],
-      status: "Planning",
-      link: "#",
-    },
-    {
-      title: "Event Management System",
-      category: "Full-Stack",
-      description:
-        "Complete solution for organizing and managing community events",
-      image: "🎪",
-      tech: ["Vue.js", "Express", "MySQL"],
-      status: "Completed",
-      link: "#",
-    },
-    {
-      title: "Blockchain Integration",
-      category: "Blockchain",
-      description: "Decentralized identity and reward system for members",
-      image: "⛓️",
-      tech: ["Solidity", "Web3.js", "Ethereum"],
-      status: "Research",
-      link: "#",
-    },
-  ];
-
   const [activeFilter, setActiveFilter] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
   useEffect(() => {
-    if (activeFilter === "All") {
-      setFilteredProjects(projects);
-    } else {
-      const newFilteredProjects = projects.filter(
+    let tempProjects = projects;
+
+    if (activeFilter !== "All") {
+      tempProjects = tempProjects.filter(
         (project) => project.category === activeFilter
       );
-      setFilteredProjects(newFilteredProjects);
     }
-  }, [activeFilter, projects]);
+
+    if (searchTerm.trim() !== "") {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      tempProjects = tempProjects.filter((project) => {
+        const titleMatch = project.title
+          .toLowerCase()
+          .includes(lowerCaseSearchTerm);
+        const techMatch = project.tech.some((t) =>
+          t.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+        return titleMatch || techMatch;
+      });
+    }
+    setFilteredProjects(tempProjects);
+  }, [activeFilter, searchTerm, projects]);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -114,6 +51,25 @@ const Projects = () => {
     }
   };
 
+  const categoryDisplayNames = {
+    "Web Development": "Web Dev",
+    "Mobile Development": "Mobile Dev",
+    "Machine Learning": "ML",
+    "Data Science": "Data Science",
+    "Full-Stack": "Full-Stack",
+    Blockchain: "Blockchain",
+    All: "All",
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
   return (
     <section id="projects" className="projects" ref={projectsRef}>
       <div className="container">
@@ -123,56 +79,65 @@ const Projects = () => {
             Showcasing the innovative solutions we've built together
           </p>
         </div>
-        <div className="filter-buttons">
-          {["All", ...new Set(projects.map((p) => p.category))].map(
-            (category) => (
-              <button
-                key={category}
-                className={`filter-btn ${
-                  activeFilter === category ? "active" : ""
-                }`}
-                onClick={() => setActiveFilter(category)}
-              >
-                {category}
-              </button>
-            )
-          )}
+
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+          <input
+            type="text"
+            placeholder="Search by title or tech..."
+            className="w-full md:w-72 bg-gray-900/50 border border-cyan-500/20 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+
+          <div className="flex flex-wrap justify-center gap-4">
+            {["All", ...new Set(projects.map((p) => p.category))].map(
+              (category) => (
+                <button
+                  key={category}
+                  className={`px-3 py-2 rounded-md font-medium transition-all duration-300 ${
+                    activeFilter === category
+                      ? "bg-cyan-500 text-gray-900 shadow-lg shadow-cyan-500/20"
+                      : "bg-gray-900/50 text-gray-400 hover:bg-gray-800/70 hover:text-cyan-400"
+                  }`}
+                  onClick={() => setActiveFilter(category)}
+                >
+                  {categoryDisplayNames[category] || category}
+                </button>
+              )
+            )}
+          </div>
         </div>
 
-        <div className="projects-grid">
-          {filteredProjects.map((project, index) => (
-            <div
-              key={index}
-              className="project-card"
-              style={{ "--delay": `${index * 0.1}s` }}
-            >
-              <div className="project-image">
-                <span className="project-emoji">{project.image}</span>
-                <div
-                  className="project-status"
-                  style={{ backgroundColor: getStatusColor(project.status) }}
-                >
-                  {project.status}
-                </div>
-              </div>
-              <div className="project-content">
-                <div className="project-category">{project.category}</div>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <div className="project-tech">
-                  {project.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a href={project.link} className="project-link">
-                  View Project →
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+        {filteredProjects.length > 0 ? (
+          <motion.div
+            className="projects-grid"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            key={activeFilter + searchTerm}
+          >
+            <AnimatePresence>
+              {filteredProjects.map((project) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  getStatusColor={getStatusColor}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        ) : (
+          <div className="text-center py-16 px-6">
+            <p className="text-4xl mb-4">🤷‍♂️</p>
+            <h3 className="text-2xl font-bold text-white mb-2">
+              No Projects Found
+            </h3>
+            <p className="text-gray-400">
+              Try adjusting your search or filter to find what you're looking
+              for.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

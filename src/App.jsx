@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
@@ -9,6 +10,20 @@ import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/Footer/Footer";
 
+import ProjectDetailPage from "./components/projects/ProjectDetailPage";
+
+const HomePage = () => {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Features />
+      <Team />
+      <Projects />
+      <Contact />
+    </>
+  );
+};
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,12 +47,11 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Hero />
-      <About />
-      <Features />
-      <Team />
-      <Projects />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+
+        <Route path="/project/:projectId" element={<ProjectDetailPage />} />
+      </Routes>
       <Footer />
     </div>
   );
