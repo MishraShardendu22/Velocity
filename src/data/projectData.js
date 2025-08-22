@@ -1,0 +1,58 @@
+export const projects = [
+  {
+    title: "Community Platform",
+    category: "Web Development",
+    description:
+      "A comprehensive platform for community management and collaboration",
+    image: "🌐",
+    tech: ["React", "Node.js", "MongoDB"],
+    status: "Completed",
+    link: "#",
+  },
+  {
+    title: "Mobile App",
+    category: "Mobile Development",
+    description: "Cross-platform mobile application for seamless communication",
+    image: "📱",
+    tech: ["React Native", "Firebase", "TypeScript"],
+    status: "In Progress",
+    link: "#",
+  },
+  {
+    title: "AI Chatbot",
+    category: "Machine Learning",
+    description: "Intelligent chatbot for automated community support",
+    image: "🤖",
+    tech: ["Python", "TensorFlow", "NLP"],
+    status: "Completed",
+    link: "#",
+  },
+  {
+    title: "Data Analytics Dashboard",
+    category: "Data Science",
+    description: "Real-time analytics and insights for community growth",
+    image: "📊",
+    tech: ["Python", "D3.js", "PostgreSQL"],
+    status: "Planning",
+    link: "#",
+  },
+  {
+    title: "Event Management System",
+    category: "Full-Stack",
+    description:
+      "Complete solution for organizing and managing community events",
+    image: "🎪",
+    tech: ["Vue.js", "Express", "MySQL"],
+    status: "Completed",
+    link: "#",
+  },
+  {
+    title: "Blockchain Integration",
+    category: "Blockchain",
+    description: "Decentralized identity and reward system for members",
+    image: "⛓️",
+    tech: ["Solidity", "Web3.js", "Ethereum"],
+    status: "Research",
+    link: "#",
+  },
+];
