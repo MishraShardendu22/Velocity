@@ -21,6 +21,7 @@ import {
 import { TbWorldWww } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Github } from "lucide-react";
 
 const techIconMap = {
   React: <FaReact />,
@@ -59,10 +60,14 @@ const ProjectCard = ({ project, index, getStatusColor }) => {
   const projectSlug = project.title.toLowerCase().replace(/ /g, "-");
   return (
     <motion.div className="project-card" variants={cardVariants}>
-      <div className="project-image">
-        <span className="project-emoji">{project.image}</span>
+      <div className="project-image relative h-32 flex items-center justify-center">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="max-h-16 object-contain"
+        />
         <div
-          className="project-status"
+          className="project-status absolute top-2 right-2 px-2 py-1 text-xs rounded text-white"
           style={{ backgroundColor: getStatusColor(project.status) }}
         >
           {project.status}
@@ -80,9 +85,26 @@ const ProjectCard = ({ project, index, getStatusColor }) => {
             </span>
           ))}
         </div>
-        <Link to={`/project/${projectSlug}`} className="project-link">
-          View Project →
-        </Link>
+        <div className="flex items-center gap-10">
+          <Link
+            to={project.link}
+            className="project-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github className="w-6 h-6" />
+          </Link>
+          {project.hostedLink && (
+            <Link
+              to={project.hostedLink}
+              className="project-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Project →
+            </Link>
+          )}
+        </div>
       </div>
     </motion.div>
   );
