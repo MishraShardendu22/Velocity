@@ -4,7 +4,7 @@ import { teamCategories } from '../../data/teamData'
 
 const Team = () => {
   const teamRef = useRef(null)
-  const [activeCategory, setActiveCategory] = useState('Leads')
+  const [activeCategory, setActiveCategory] = useState('All')
   const [query, setQuery] = useState('')
   const [sortBy, setSortBy] = useState('name')
   const scrollRef = useRef(null)
@@ -52,9 +52,9 @@ const Team = () => {
   }
 
   const filteredMembers = useMemo(() => {
-    const members = activeCategory
-      ? (activeTeam?.members || [])
-      : teamCategories.flatMap((c) => c.members)
+    const members = activeCategory === 'All'
+      ? teamCategories.slice(1).flatMap((c) => c.members)
+      : (activeTeam?.members || [])
     const q = query.trim().toLowerCase()
     const filtered = q
       ? members.filter((m) => {
@@ -127,6 +127,7 @@ const Team = () => {
             const isActive = activeCategory === category.name
             const tabId = `tab-${getIdFromName(category.name)}`
             const panelId = `panel-${getIdFromName(category.name)}`
+            const IconComponent = category.icon
             return (
               <button
                 key={category.name}
@@ -139,7 +140,9 @@ const Team = () => {
                 onClick={() => setActiveCategory((prev) => (prev === category.name ? null : category.name))}
                 onKeyDown={handleTabKeyDown(idx)}
               >
-                <span className="tab-icon">{category.icon}</span>
+                <span className="tab-icon">
+                  <IconComponent size={20} />
+                </span>
                 <span className="tab-name">{category.name}</span>
               </button>
             )

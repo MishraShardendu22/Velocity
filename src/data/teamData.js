@@ -1,7 +1,14 @@
+import { Users, Shield, Palette, Settings, Rocket, Smartphone } from 'lucide-react'
+
 export const teamCategories = [
   {
+    name: 'All',
+    icon: Users,
+    members: [] 
+  },
+  {
     name: 'Leads',
-    icon: '🛡️',
+    icon: Shield,
     members: [
       {
         name: 'John Smith',
@@ -30,7 +37,7 @@ export const teamCategories = [
   },
   {
     name: 'Frontend Development',
-    icon: '🎨',
+    icon: Palette,
     members: [
       {
         name: 'Sarah Kim',
@@ -80,7 +87,7 @@ export const teamCategories = [
   },
   {
     name: 'Backend Development',
-    icon: '⚙️',
+    icon: Settings,
     members: [
       {
         name: 'David Park',
@@ -130,7 +137,7 @@ export const teamCategories = [
   },
   {
     name: 'Full-Stack Development',
-    icon: '🚀',
+    icon: Rocket,
     members: [
       {
         name: 'Emma Watson',
@@ -180,7 +187,7 @@ export const teamCategories = [
   },
   {
     name: 'App Development',
-    icon: '📱',
+    icon: Smartphone,
     members: [
       {
         name: 'James Wilson',
@@ -231,5 +238,3 @@ export const teamCategories = [
 ]
 
 export default teamCategories
-
-
